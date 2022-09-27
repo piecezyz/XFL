@@ -50,7 +50,7 @@ Parameter List
         - **aggregation_config**:
             - **type**: ``str`` Aggregation method, support "fedavg".
             - **encryption**:
-                - **method**: ``str`` Encryption, recommend "otp".
+                - **method**: ``str`` Encryption method, recommend "otp".
                 - **key_bitlength**: ``int`` Key length of one time pad encryption，support 64 and 128.
                 - **data_type**: ``str`` Input data type, support `torch.Tensor` and `numpy.ndarray`, depending on model data type.
                 - **key_exchange**:
@@ -59,16 +59,16 @@ Parameter List
                 - **csprng**:
                     - **name**: ``str`` Pseudo-random number generation method.
                     - **method**: ``str`` Corresponding hash method.
-        - **optimizer_config**:
+        - **optimizer_config**: Support optimizers and their parameters defined in pytorch or registered by user. For example:
             - **Adam**:
                 - **lr**: ``float`` Optimizer learning rate.
                 - **amsgrad**: ``bool`` Whether to use the AMSGrad variant.
-        - **lr_scheduler_config**:
+        - **lr_scheduler_config**: Support lr_scheduler and their parameters defined in pytorch or registered by user. For example:
             - **StepLR**:
                 - **step_size**: ``int`` Period of learning rate decay.
                 - **gamma**: ``float`` Multiplicative factor of learning rate decay.
         - **lossfunc_config**: Loss function configuration, support `L1Loss` and `MAPEloss`.
-        - **metric_config**:
+        - **metric_config**: Support multiple metrics.
             - **mae**: Mean absolute error.
             - **mse**: Mean square error.
             - **mape**: Mean absolute percentage error.

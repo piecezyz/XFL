@@ -30,7 +30,7 @@ from algorithm.framework.vertical.logistic_regression.trainer import \
     VerticalLogisticRegressionTrainer
 from common.communication.gRPC.python.channel import BroadcastChannel
 from common.crypto.paillier.paillier import Paillier
-
+from common.communication.gRPC.python.commu import Commu
 
 def prepare_data():
     case_df = pd.DataFrame({
@@ -83,6 +83,9 @@ def get_trainer_conf():
 
 @pytest.fixture(scope="module", autouse=True)
 def env():
+    Commu.node_id="node-1"
+    Commu.trainer_ids = ['node-1', 'node-2']
+    Commu.scheduler_id = 'assist_trainer'
     if not os.path.exists("/opt/dataset/unit_test"):
         os.makedirs("/opt/dataset/unit_test")
     if not os.path.exists("/opt/checkpoints/unit_test"):
@@ -172,6 +175,8 @@ class TestLogisticRegression:
             elif encryption_method == "paillier":
                 return []
             elif encryption_method == "plain":
+                if mock_channel_collect.call_count >= 9:
+                    return []
                 if mock_channel_collect.call_count % 2 == 1:
                     return [torch.tensor(np.zeros([800, 1]))]
                 else:

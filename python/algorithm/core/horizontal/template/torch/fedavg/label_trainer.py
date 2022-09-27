@@ -14,7 +14,7 @@
 
 
 from algorithm.core.horizontal.aggregation.aggregation_base import AggregationLeafBase
-from .base import BaseTrainer
+from ..base import BaseTrainer
 
 
 class FedAvgLabelTrainer(BaseTrainer):
@@ -40,5 +40,5 @@ class FedAvgLabelTrainer(BaseTrainer):
         else:
             state_dict = self.model.state_dict()
         aggregation_config = self.train_params["aggregation_config"]
-        weight = aggregation_config.get("weight") or len(self.train_dataloader)
+        weight = aggregation_config.get("weight") or len(self.train_dataloader.dataset)
         aggregator.upload(state_dict, weight)

@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/github/license/paritybit-ai/XFL)](https://opensource.org/licenses/Apache-2.0)
 [![Documentation Status](https://readthedocs.org/projects/xfl/badge/?version=latest)](https://xfl.readthedocs.io/en/latest/?badge=latest)
 
+
 XFL is a high-performance, high-flexibility, high-applicability, lightweight, open and easy-to-use Federated Learning framework.
 It supports a variety of federation models in both horizontal and vertical federation scenarios. 
 To enable users to jointly train model legally and compliantly to unearth the value of their data, XFL adopts homomorphic encryption,
@@ -34,11 +35,27 @@ Running in standalone mode
 
 ```shell
 # create and activate the virtual environment
-conda create -n xfl python=3.9
+conda create -n xfl python=3.9.7
 conda activate xfl
 
+# install redis and other dependencies
+# Ubuntu
+apt install redis-server
+# CentOS
+yum install epel-release
+yum install redis
+# MacOS
+brew install redis
+brew install coreutils
+
+# install python dependencies
+# update pip
+pip install -U pip
 # install dependencies
 pip install -r requirements.txt
+
+# set permission
+sudo chmod 755 /opt
 
 # enter the project directory
 cd ./demo/vertical/logistic_regression/2party

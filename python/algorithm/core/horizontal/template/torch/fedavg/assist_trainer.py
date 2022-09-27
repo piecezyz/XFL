@@ -14,7 +14,7 @@
 
 
 from algorithm.core.horizontal.aggregation.aggregation_base import AggregationRootBase
-from .base import BaseTrainer
+from ..base import BaseTrainer
 
 
 class FedAvgAssistTrainer(BaseTrainer):
